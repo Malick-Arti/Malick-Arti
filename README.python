@@ -1,0 +1,28 @@
+import requests
+def ip_poisk(ip="127.0.0.1"):
+    try:
+        response = requests.get(url=f"http://ip-api.com/json/{ip}").json()
+        data = {
+            "[IP]": response.get("query"),
+            "[Страна]": response.get("country"),
+            "[Регион]": response.get("region"),
+            "[Имя региона]": response.get("regionName"),
+            "[Город]": response.get("city"),
+            "[Почтовый ИНДЕКС]": response.get("zip"),
+            "[ШИРИНА]": response.get("lat"),
+            "[ДОЛГОТА]": response.get("lon"),
+            "[Временная зона]": response.get("timezone"),
+        }
+        for a ,b in data.items():
+            print(f"{a} : {b}")
+    except:
+        print("ОШИБКА")
+def ip_chek():
+    print("Введите ip")
+    ip = input()
+    ip_poisk(ip=ip)
+
+try:
+    ip_chek()
+except:
+    print("ОШИБКА")
